@@ -41,7 +41,7 @@ public class Hero {
   }
 
   public boolean isCompleted() {
-    return mCompleted;
+    return mCo;
   }
 
   public LocalDateTime getCreatedAt() {

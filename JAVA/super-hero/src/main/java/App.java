@@ -21,7 +21,7 @@ public class App {
   setPort(port);
 
  // creating a root route in App.java file that will render our home page
- // displaying custom methods
+ // displaying cus      modified:   src/main/java/VelocityTemplateEngine.java
     get("/", (request, response) -> {
           Map<String, Object> model = new HashMap<String, Object>();
           model.put("heroes", request.session().attribute("heroes"));

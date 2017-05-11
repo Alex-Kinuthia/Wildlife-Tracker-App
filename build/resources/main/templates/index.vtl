@@ -1,9 +1,9 @@
 <h1>Welcome all to the App</h1>
 
-<h3><a href="/animal/new">Add Animal to System</a></h3>
-<hr>
+<h3><a href="/animal/new">Add Animal</a></h3>
+<br>
 
-<h3> Report Non-Endangered Animal Sighting </h3>
+<h3> Report Animal Sighting </h3>
 <form action="/sighting" method="post">
   #if($animals.size() >= 0)
     <label>Select Animal</label>
@@ -14,19 +14,19 @@
     </select>
 
     <label>Location</label>
-    <input type="text" name="latLong">
+    <input type="text" name="kenya">
     <label>Your Name</label>
     <input type="text" name="rangerName">
-    <button type="submit">Submit Report</button>
+    <button type="submit">Submit Details</button>
   #end
 </form>
 
-<hr>
+<br>
 
 <h3> Report Endangered Animal Sighting </h3>
 <form action="/endangered_sighting" method="post">
   #if($endangeredAnimals.size() >= 0)
-    <label>Select Endangered Animal</label>
+    <label>Go ahead and select an Endangered Animal</label>
     <select name="endangeredAnimalSelected">
       #foreach($endangered_animal in $endangeredAnimals)
         <option value="$endangered_animal.getId()">$endangered_animal.getName()</option>
@@ -34,7 +34,7 @@
     </select>
 
     <label>Location</label>
-    <input type="text" name="latLong">
+    <input type="text" name="kenya">
     <label>Your Name</label>
     <input type="text" name="rangerName">
     <button type="submit">Submit Report</button>
@@ -51,14 +51,14 @@
     <a href="/endangered_animal/$endangeredAnimal.getId()" class="thumbnail">
       <h4>$endangeredAnimal.getName()</h4>
       <h4>$endangeredAnimal.getSightings().size() Reported Sighting(s)</h4>
-      <p>Click for details</p>
+      <p>Please do click for details</p>
     </a>
   #end
 #end
 
-<h3>All Animals & Sightings</h3>
+<h3>All the Animals & Sightings recorded</h3>
 #if ($animals.size() == 0)
-  <a href="/animal/new">Add Animal to Database to Report a Sighting</a>
+  <a href="/animal/new">Add Animal to a Sighting</a>
 #else
   #foreach ($animal in $animals)
     <a href="/animal/$animal.getId()" class="thumbnail">

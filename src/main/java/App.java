@@ -1,3 +1,4 @@
+// imports
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
@@ -6,6 +7,7 @@ import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import static spark.Spark.*;
 
+// / class App
 public class App {
   public static void main(String[] args) {
     staticFileLocation("/public");
@@ -35,5 +37,19 @@ public class App {
   model.put("template", "templates/animal.vtl");
   return new ModelAndView(model, layout);
 }, new VelocityTemplateEngine());
+
+post("/animal/new", (request, response) -> {
+  Map<String, Object> model = new HashMap<String, Object>();
+  boolean endangered = request.queryParamsValues("endangered")!=null;
+  if (endangered) {
+    String name = request.queryParams("name");
+    String health = request.queryParams("health");
+    String age = request.queryParams("age");
+    EndangeredAnimal endangeredAnimal = new EndangeredAnimal(name, health, age);
+    endangeredAnimal.save();
+    model.put("animals", Animal.all());
+    model.put("endangeredAnimals", EndangeredAnimal.all());
+    };
+});
 }
 }

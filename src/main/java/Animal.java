@@ -61,7 +61,7 @@ public static Animal find(int id) {
       .getKey();
   }
 }
-//method for updating animals in the database
+//method for updating name of animals in the database
 public void updateName(String name) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "UPDATE animals SET name=:name WHERE id=:id;";

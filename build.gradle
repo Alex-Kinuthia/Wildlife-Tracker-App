@@ -4,7 +4,10 @@ apply plugin: 'application'
 archivesBaseName = "wildlife-tracker"
 version = '1.0'
 mainClassName = "App"
+<<<<<<< HEAD
 applicationName = "wildlife"
+=======
+>>>>>>> 14ee1378a3f7363d94e4eb4cea82b659d16e5bb1
 
 repositories {
   mavenCentral()
@@ -17,6 +20,9 @@ dependencies {
   compile group: 'org.sql2o', name: 'sql2o', version: '1.5.4'
   compile group: 'org.postgresql', name: 'postgresql', version: "9.4-1201-jdbc41"
 }
+<<<<<<< HEAD
 
 defaultTasks = ['clean']
 task stage(dependsOn: ['clean', 'installApp'])
+=======
+>>>>>>> 14ee1378a3f7363d94e4eb4cea82b659d16e5bb1

@@ -12,6 +12,7 @@ public class App {
   public static void main(String[] args) {
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
+<<<<<<< HEAD
     ProcessBuilder process = new ProcessBuilder();
     Integer port;
     if (process.environment().get("PORT") !=null) {
@@ -26,10 +27,19 @@ public class App {
 
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+=======
+
+    get("/", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      // model.put("animals", Animal.all());
+      // model.put("endangeredAnimals", EndangeredAnimal.all());
+      // model.put("sightings", Sighting.all());
+>>>>>>> 14ee1378a3f7363d94e4eb4cea82b659d16e5bb1
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+<<<<<<< HEAD
 
         get("/contact", (request, response) -> {
           Map<String, Object> model = new HashMap<String, Object>();
@@ -44,5 +54,36 @@ public class App {
       model.put("template", "templates/animal-form.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+=======
+    get("/animal/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("animals", Animal.all());
+      // model.put("endangeredAnimals", EndangeredAnimal.all());
+      model.put("template", "templates/animal-form.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/animal/:id", (request, response) -> {
+  Map<String, Object> model = new HashMap<String, Object>();
+  Animal animal = Animal.find(Integer.parseInt(request.params("id")));
+  model.put("animal", animal);
+  model.put("template", "templates/animal.vtl");
+  return new ModelAndView(model, layout);
+}, new VelocityTemplateEngine());
+
+post("/animal/new", (request, response) -> {
+  Map<String, Object> model = new HashMap<String, Object>();
+  boolean endangered = request.queryParamsValues("endangered")!=null;
+  if (endangered) {
+    String name = request.queryParams("name");
+    String health = request.queryParams("health");
+    String age = request.queryParams("age");
+    EndangeredAnimal endangeredAnimal = new EndangeredAnimal(name, health, age);
+    endangeredAnimal.save();
+    model.put("animals", Animal.all());
+    model.put("endangeredAnimals", EndangeredAnimal.all());
+    };
+});
+>>>>>>> 14ee1378a3f7363d94e4eb4cea82b659d16e5bb1
 }
 }
